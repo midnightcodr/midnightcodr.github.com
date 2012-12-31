@@ -17,6 +17,6 @@ Since one board needs 6 legs (I wouldn't try with 4 legs only) I ended up bying 
 
 Final material cost (per stand): $25.
 
-## The making and the result:
+## The making and the result
 {% img https://dl.dropbox.com/u/16020214/monitor_stand/monitor_stand_in_the_making.jpg %}
 {% img https://dl.dropbox.com/u/16020214/monitor_stand/monitor_stand_final.jpg %}
