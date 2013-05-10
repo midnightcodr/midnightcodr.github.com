@@ -71,5 +71,5 @@ sudo launchctl load -w /System/Library/LaunchDaemons/nagios-audio-alert.plist
 ## Some notes
 - 20123 is the UDP port I grabbed from the air, change to whatever port you like (make sure they are in sync in both the js code and nagios config file command.cfg
 - Reason why execSync is needed is because if you have two (or more) messages come in at the same time (or almost simultaneously), you want the messages to be played one after another
-- If you have filewall on either the client or the nagios server, make sure they allow the traffic for the protocal/port used
+- If you have filewall on either the client or the nagios server, make sure they allow the traffic for the protocol/port used
 - A mac client is not really a hard requirement to build a nagios audio alert system like this, a Linux box that is capable of doing text-to-audio can handle this kind of task with ease, some code in nagios-audio-alert.js need to be changed though
