@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Use &amp;&amp; in to simplify codes"
+title: "Use &amp;&amp; to simplify js codes"
 date: 2013-07-20 02:46
 comments: true
 categories: [programming, javascript]
