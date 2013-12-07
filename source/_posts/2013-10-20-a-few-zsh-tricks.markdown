@@ -41,6 +41,16 @@ cp !*
 	^en^fr^:G	
 ```
 
+#### Switching between directories with similar structure (added Dec 7, 2013)
+let's say you are in ~/dev/myproject1/src/lib/, and you want to cd to  ~/dev/myproject2/src/lib/, all you need to do is
+```
+cd myproject1 myproject2
+```
+or even
+```
+cd 1 2
+```
+
 #### Batch renaming with zmv
 ```
 	autoload zmv
