@@ -13,7 +13,8 @@ I am a big fan of both Raspberry PI and Gitlab so it kinda bugs me when my attem
 
 2) Install libv8 ([https://github.com/cowboyd/libv8](https://github.com/cowboyd/libv8))
 
-	sudo apt-get install -y subversion
+	# [update: added git-svn to the list on 1/17/2014]
+	sudo apt-get install -y subversion git-svn
 	[ -d ~/tmp ] || mkdir ~/tmp
 	cd ~/tmp
 	git clone https://github.com/cowboyd/libv8
