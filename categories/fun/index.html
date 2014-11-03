@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: fun | Ricos New Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ricos New Blog">
+<meta property="og:url" content="http://midnightcodr.github.io/categories/fun/">
+<meta property="og:site_name" content="Ricos New Blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ricos New Blog">
+<meta name="twitter:description">
+
+  
+    <link rel="alternative" href="/atom.xml" title="Ricos New Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ricos New Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I just love coding</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://midnightcodr.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/01/26/cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature/" class="article-date">
+  <time datetime="2013-01-26T05:00:00.000Z" itemprop="datePublished">Jan 26 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/fun/">fun</a>►<a class="article-category-link" href="/categories/fun/health/">health</a>►<a class="article-category-link" href="/categories/fun/health/programming/">programming</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/01/26/cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature/">Cool Audio Reminder Script With MAC OS X&#39;s Text-to-speech Feature</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Why">Why</h2>
+<p>We know that <a href="http://abcnews.go.com/WN/sitting-long-work-pose-health-danger/story?id=11926874" target="_blank" rel="external">sitting for too long is harmful for our health</a>. My solution to this problem is to set up a friendly reminder using Mac OS X’s speech to text feature, and a bit of programming. So here we go:</p>
+<h2 id="Steps">Steps</h2>
+<p>1). Create a reminder file under your home directory, for example,</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi ~/<span class="keyword">break</span>_reminder</div></pre></td></tr></table></figure>
+
+
+<figure class="highlight"><figcaption><span>content of ~/break_reminder</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Stand up <span class="keyword">and</span> walk around Your_Name.</div><div class="line">Don<span class="comment">'t be lazy Your_Name, I know you can do it.</span></div><div class="line">Stand up now, Your_Name, <span class="keyword">and</span> <span class="keyword">do</span> some exercises.</div><div class="line">Sitting <span class="keyword">for</span> too <span class="built_in">long</span> <span class="keyword">is</span> <span class="keyword">not</span> healthy <span class="keyword">for</span> you Your_Name.</div><div class="line"><span class="keyword">Take</span> a walk, <span class="keyword">get</span> some water Your_Name.</div><div class="line">You need a <span class="built_in">short</span> break Your_Name.</div><div class="line">Don<span class="comment">'t stick your butt to the chair for too long Your_Name.</span></div></pre></td></tr></table></figure>
+
+<p>Obviously change Your_Name to something that you want the voice to call you. This is one that I created, feel free to change the content.</p>
+<p>2). Create the reminder shell script</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">vi</span> ~/reminder.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
+
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/usr/bin/env bash</span></div><div class="line">(( total_lines = $(wc <span class="operator">-l</span> &lt; ~/<span class="keyword">break</span>_reminder) )) &amp;&amp; (( line = <span class="variable">$RANDOM</span> % <span class="variable">$total_lines</span> + <span class="number">1</span> )) &amp;&amp; sed -n <span class="variable">${line}</span>p ~/<span class="keyword">break</span>_reminder|say</div></pre></td></tr></table></figure><br>3). Run some dry tests by running</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash ~/reminder.sh</div></pre></td></tr></table></figure><br>4). Add the reminder to crontab</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">crontab <span class="operator">-e</span></div></pre></td></tr></table></figure><br>insert the following line:</p>
+<p>0 9-16 <em> </em> 1-5 bash ~/reminder.sh</p>
+<p>This will run the reminder script from 9am to 4pm hourly on the clock Monday through Friday. If you are new to crontab, refer to <a href="http://en.wikipedia.org/wiki/Cron" target="_blank" rel="external">http://en.wikipedia.org/wiki/Cron</a> for more details.</p>
+<h2 id="Notes">Notes</h2>
+<ol>
+<li>I tried putting the meat inside ~/reminder.sh directly into crontab, didn’t work, that’s why this extra script is needed.</li>
+<li>Feel free to change the env from bash to zsh in ~/reminder.sh, I have tested it to work with both bash and zsh.</li>
+<li>Personally I prefer Serena’s voice, you need to download it via these steps: Search for “Dictation &amp; Speech” in the spotlight -&gt; Tick “Text to Speech” -&gt; Tick “Customize”, then “Serena” from System Voice dropdown, you will be prompted to download the voice file if it has not been downloaded before.</li>
+<li>The reminder (break_reminder) and script (reminder.sh) can be found in my github repository: <a href="https://github.com/midnightcodr/break_reminder" target="_blank" rel="external">https://github.com/midnightcodr/break_reminder</a>.</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://midnightcodr.github.io/2013/01/26/cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature/" data-id="hn4idmwznvensqv5" class="article-share-link">Share</a>
+      
+        <a href="http://midnightcodr.github.io/2013/01/26/cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/">DIY</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/fun/">fun</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/fun/monitor-stand/">monitor stand</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/fun/monitor-stand/ikea/">ikea</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/fun/standing-desk/">standing desk</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DIY/fun/standing-desk/ikea/">ikea</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSL/">SSL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SSL/openssl/">openssl</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/fun/">fun</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/fun/health/">health</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/fun/health/programming/">programming</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/gitlab/">gitlab</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/gitlab/raspberrypi/">raspberrypi</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/gitlab/raspberrypi/rpi/">rpi</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/howto/">howto</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/howto/fun/">fun</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/howto/fun/nagios/">nagios</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/howto/fun/nagios/node-js/">node.js</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/howto/node-js/">node.js</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/howto/node-js/centos/">centos</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/howto/node-js/centos/bz2/">bz2</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/howto/tip/">tip</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/howto/tip/tony-macx86/">tony macx86</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/howto/tip/tony-macx86/hackintosh/">hackintosh</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/security/">security</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/security/injection-attack/">injection attack</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/shell/">shell</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/shell/zsh/">zsh</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/shell/zsh/command-line/">command-line</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/11/02/Tips-to-make-the-life-of-coding-a-whole-lot-easier/">Tips to make the life of coding a whole lot easier</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/23/i-just-built-my-first-standing-desk/">I just built my first standing desk</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/11/install-gitlab-6-dot-4-on-raspberry-pi/">Install Gitlab(6.4) on Raspberry PI</a>
+          </li>
+        
+          <li>
+            <a href="/2013/11/09/a-few-zsh-tricks/">A few zsh tricks</a>
+          </li>
+        
+          <li>
+            <a href="/2013/07/20/use-and-and-in-to-simplify-codes/">Use &amp;&amp; to simplify js codes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 Rico Chen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'ricosnewblog';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>

