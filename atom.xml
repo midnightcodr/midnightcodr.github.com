@@ -4,7 +4,7 @@
   <subtitle><![CDATA[I just love coding]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://midnightcodr.github.io/"/>
-  <updated>2014-11-03T04:06:10.357Z</updated>
+  <updated>2014-11-23T05:38:37.812Z</updated>
   <id>http://midnightcodr.github.io/</id>
   
   <author>
@@ -13,6 +13,47 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[How to convert 20 million datetime strings to ISODate in less than 30 minutes]]></title>
+    <link href="http://midnightcodr.github.io/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/"/>
+    <id>http://midnightcodr.github.io/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/</id>
+    <published>2014-11-23T04:40:01.000Z</published>
+    <updated>2014-11-23T05:38:29.000Z</updated>
+    <content type="html"><![CDATA[<p>Recently I was faced with a task to correct one of the columns’ data type in a mongodb collection. The column is supposed to be in ISODate format (value example: “2014-10-13T09:48:00Z”) but unfortunately it’s saved as string type when the data collecting client populates the collection. The real challenge is the collection count is a little over 20 million. My first attempt is to convert the datatype (string) to the right one (ISODate) by iterating through the whole collection. The following mongo script is used:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cursor=db.data.find( { D: { $not: { $type: <span class="number">9</span> } } } );  </div><div class="line"><span class="comment">// 9 is Date in mongodb, filter is used to prevent converting data type that is already Date</span></div><div class="line"></div><div class="line"><span class="keyword">while</span>( cursor.hasNext() ) {</div><div class="line">    <span class="keyword">var</span> doc=cursor.next();</div><div class="line">    doc.D=ISODate(doc.D);   <span class="comment">// original doc.D is in string format</span></div><div class="line">    db.data.update(</div><div class="line">        { _id: doc._id },</div><div class="line">        { writeConcern: {w: <span class="number">0</span>} }    <span class="comment">// disable write concern to speed up updates</span></div><div class="line">    );</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>The code works, except it’s not fast enough. I am getting roughly 1.5K/second update speed (with writeConcern disabled, which is the fastest option) on my i3 hp laptop with 8GB RAM and SSD. It would take almost 4 hours to finish convertion. There needs to be a faster way. Through some experiments I found a much faster way:</p>
+<ul>
+<li>use mongodump to export the collection, result will be the bson formatted file <em>data.bson</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongodump <span class="operator">-d</span> test -c data</div></pre></td></tr></table></figure>
+
+<ul>
+<li>use <code>bsondump</code> combined with an <code>sed</code> command to turn the datetime string field into ISODate field, end result is a json-formatted file <em>data.json</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bsondump data.bson | sed <span class="operator">-e</span> <span class="string">'s/"D" : "\(.*\)"/"D" : { "$date" : "\1" }/'</span> &gt; data.json</div></pre></td></tr></table></figure>
+
+<ul>
+<li>use <code>mongoimport</code> to import the file generated from previous step, <em>data.json</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongoimport <span class="operator">-d</span> test -c data_new --type json --file data.json</div></pre></td></tr></table></figure>
+
+<ul>
+<li>confirm the new collection data_new has the correct date column, drop the original collection and rename data_new to data under mongo shell. The whole process took 23 minutes with the same hardware setup.</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Recently I was faced with a task to correct one of the columns’ data type in a mongodb collection. The column is supposed to be in ISODat]]>
+    </summary>
+    
+      <category term="programming" scheme="http://midnightcodr.github.io/tags/programming/"/>
+    
+      <category term="mongodb" scheme="http://midnightcodr.github.io/tags/mongodb/"/>
+    
+      <category term="sed" scheme="http://midnightcodr.github.io/tags/sed/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Tips to make the life of coding a whole lot easier]]></title>

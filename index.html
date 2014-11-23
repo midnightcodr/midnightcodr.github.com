@@ -67,6 +67,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/" class="article-date">
+  <time datetime="2014-11-23T04:40:01.000Z" itemprop="datePublished">Nov 22 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/">How to convert 20 million datetime strings to ISODate in less than 30 minutes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Recently I was faced with a task to correct one of the columns’ data type in a mongodb collection. The column is supposed to be in ISODate format (value example: “2014-10-13T09:48:00Z”) but unfortunately it’s saved as string type when the data collecting client populates the collection. The real challenge is the collection count is a little over 20 million. My first attempt is to convert the datatype (string) to the right one (ISODate) by iterating through the whole collection. The following mongo script is used:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cursor=db.data.find( { D: { $not: { $type: <span class="number">9</span> } } } );  </div><div class="line"><span class="comment">// 9 is Date in mongodb, filter is used to prevent converting data type that is already Date</span></div><div class="line"></div><div class="line"><span class="keyword">while</span>( cursor.hasNext() ) {</div><div class="line">    <span class="keyword">var</span> doc=cursor.next();</div><div class="line">    doc.D=ISODate(doc.D);   <span class="comment">// original doc.D is in string format</span></div><div class="line">    db.data.update(</div><div class="line">        { _id: doc._id },</div><div class="line">        { writeConcern: {w: <span class="number">0</span>} }    <span class="comment">// disable write concern to speed up updates</span></div><div class="line">    );</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>The code works, except it’s not fast enough. I am getting roughly 1.5K/second update speed (with writeConcern disabled, which is the fastest option) on my i3 hp laptop with 8GB RAM and SSD. It would take almost 4 hours to finish convertion. There needs to be a faster way. Through some experiments I found a much faster way:</p>
+<ul>
+<li>use mongodump to export the collection, result will be the bson formatted file <em>data.bson</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongodump <span class="operator">-d</span> test -c data</div></pre></td></tr></table></figure>
+
+<ul>
+<li>use <code>bsondump</code> combined with an <code>sed</code> command to turn the datetime string field into ISODate field, end result is a json-formatted file <em>data.json</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bsondump data.bson | sed <span class="operator">-e</span> <span class="string">'s/"D" : "\(.*\)"/"D" : { "$date" : "\1" }/'</span> &gt; data.json</div></pre></td></tr></table></figure>
+
+<ul>
+<li>use <code>mongoimport</code> to import the file generated from previous step, <em>data.json</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongoimport <span class="operator">-d</span> test -c data_new --type json --file data.json</div></pre></td></tr></table></figure>
+
+<ul>
+<li>confirm the new collection data_new has the correct date column, drop the original collection and rename data_new to data under mongo shell. The whole process took 23 minutes with the same hardware setup.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://midnightcodr.github.io/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/" data-id="jfxeniyaaece88sp" class="article-share-link">Share</a>
+      
+        <a href="http://midnightcodr.github.io/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sed/">sed</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Tips-to-make-the-life-of-coding-a-whole-lot-easier" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/11/02/Tips-to-make-the-life-of-coding-a-whole-lot-easier/" class="article-date">
@@ -637,59 +699,6 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
 
 
   
-    <article id="post-display-stand-diy" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/12/30/display-stand-diy/" class="article-date">
-  <time datetime="2012-12-31T01:50:00.000Z" itemprop="datePublished">Dec 30 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/DIY/">DIY</a>►<a class="article-category-link" href="/categories/DIY/fun/">fun</a>►<a class="article-category-link" href="/categories/DIY/fun/monitor-stand/">monitor stand</a>►<a class="article-category-link" href="/categories/DIY/fun/monitor-stand/ikea/">ikea</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/30/display-stand-diy/">Display Stand DIY</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Ideas">Ideas</h2>
-<p>Inspired by <a href="http://lifehacker.com/5872323/diy-ikea-monitor-stand-for-12" target="_blank" rel="external">http://lifehacker.com/5872323/diy-ikea-monitor-stand-for-12</a>, I decided to make a monitor stand that can support 2 LCD monitors.</p>
-<p>I settled down on the following parts:</p>
-<ul>
-<li>The boards: <a href="http://www.ikea.com/us/en/catalog/products/30094629/#/10094630" target="_blank" rel="external">EKBY TRYGGVE softwood shelf</a></li>
-<li>The legs: <a href="http://www.ikea.com/us/en/catalog/products/20049538/#/00054564" target="_blank" rel="external">CAPITA 6” standless stell leg</a></li>
-</ul>
-<p>Since one board needs 6 legs (I wouldn’t try with 4 legs only) I ended up bying 2 boards and 3 packs of legs (12 legs total) so I can make an extra stand for my work place.</p>
-<p>Final material cost (per stand): $25.</p>
-<h2 id="The_making_and_the_result">The making and the result</h2>
-<img src="https://dl.dropbox.com/u/16020214/monitor_stand/monitor_stand_in_the_making.jpg"><br><img src="https://dl.dropbox.com/u/16020214/monitor_stand/monitor_stand_final.jpg">
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://midnightcodr.github.io/2012/12/30/display-stand-diy/" data-id="4i2iccyqgreu3u1a" class="article-share-link">Share</a>
-      
-        <a href="http://midnightcodr.github.io/2012/12/30/display-stand-diy/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -709,14 +718,28 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/programming/">programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sed/">sed</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/mongodb/" style="font-size: NaNpx;">mongodb</a><a href="/tags/programming/" style="font-size: NaNpx;">programming</a><a href="/tags/sed/" style="font-size: NaNpx;">sed</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -726,6 +749,10 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/">How to convert 20 million datetime strings to ISODate in less than 30 minutes</a>
+          </li>
         
           <li>
             <a href="/2014/11/02/Tips-to-make-the-life-of-coding-a-whole-lot-easier/">Tips to make the life of coding a whole lot easier</a>
@@ -741,10 +768,6 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
         
           <li>
             <a href="/2013/11/09/a-few-zsh-tricks/">A few zsh tricks</a>
-          </li>
-        
-          <li>
-            <a href="/2013/07/20/use-and-and-in-to-simplify-codes/">Use &amp;&amp; to simplify js codes</a>
           </li>
         
       </ul>
