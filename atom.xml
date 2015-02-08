@@ -4,7 +4,7 @@
   <subtitle><![CDATA[I just love coding]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://midnightcodr.github.io/"/>
-  <updated>2015-02-08T03:16:20.626Z</updated>
+  <updated>2015-02-08T03:22:49.653Z</updated>
   <id>http://midnightcodr.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://midnightcodr.github.io/2015/02/07/OHLC-data-grouping-with-mongodb/"/>
     <id>http://midnightcodr.github.io/2015/02/07/OHLC-data-grouping-with-mongodb/</id>
     <published>2015-02-07T15:57:42.000Z</published>
-    <updated>2015-02-08T03:13:57.000Z</updated>
+    <updated>2015-02-08T03:21:27.000Z</updated>
     <content type="html"><![CDATA[<p>In this post I will demonstrate how to do data grouping with OHLC data using mongodb’s powerful aggregation framework.</p>
 <h2 id="The_problem:">The problem:</h2>
 <p>Group OHLC data every N weeks where N&gt;1, I should point out that doing weekly data grouping (when N==1) is a whole lot easier.</p>
@@ -32,7 +32,7 @@
 <h2 id="The_explanation:">The explanation:</h2>
 <p>The idea is to </p>
 <ol>
-<li>get the number of weeks (floating point) since a reference date (line #8-17, all OHLC data in the db are later then that date), the reason <code>1970-01-04</code> instead of <code>1970-01-01</code> (which is Wednesday)<br>is chosen is because it lands on Sunday.</li>
+<li>get the number of weeks (floating point) since a reference date (line #8-17, all OHLC data in the db are later than that date), the reason <code>1970-01-04</code> instead of <code>1970-01-01</code> (which is Wednesday)<br>is chosen is because it lands on Sunday.</li>
 <li>get the floored number of weeks for step 2, line #22-31, since mongodb doesn’t have a <code>round</code> or <code>floor</code> method, this is the only way to get number of week since reference date in integer.</li>
 <li>sort by D, this step is crucial as the next step will need to use method such as $last and $first to get the close and open price for the grouped period.</li>
 <li>group by 4 weeks’ OHLC, line #37-40, number 4 on line #41 can be substituted based on data group unit.</li>
