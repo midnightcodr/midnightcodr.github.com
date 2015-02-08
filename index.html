@@ -67,6 +67,65 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-OHLC-data-grouping-with-mongodb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/07/OHLC-data-grouping-with-mongodb/" class="article-date">
+  <time datetime="2015-02-07T15:57:42.000Z" itemprop="datePublished">Feb 7 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/07/OHLC-data-grouping-with-mongodb/">OHLC data grouping with mongodb</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>In this post I will demo how to do data grouping OHLC data using mongodb’s powerfull aggregation framework.</p>
+<h2 id="The_problem:">The problem:</h2>
+<p>Group OHLC data every N weeks where N&gt;1, I should point out that doing weekly data grouping (when N==1) is a whole lot easier.</p>
+<h2 id="Sameple_Data:">Sameple Data:</h2>
+<figure class="highlight js"><figcaption><span>example data</span><a href="/downloads/code/mongodb_aggregation_data.js">download</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Data based on http://finance.yahoo.com/q/hp?s=QQQ+Historical+Prices */</span></div><div class="line">&gt; db.ohlc.find()</div><div class="line">{ <span class="string">"_id"</span> : ObjectId(<span class="string">"54d65597daf0910dfa816995"</span>), <span class="string">"S"</span> : <span class="string">"QQQ"</span>, <span class="string">"D"</span> : ISODate(<span class="string">"2015-02-06T00:00:00Z"</span>), <span class="string">"O"</span> : <span class="number">103.92</span>, <span class="string">"H"</span> : <span class="number">104.17</span>, <span class="string">"L"</span> : <span class="number">102.76</span>, <span class="string">"C"</span> : <span class="number">103.13</span>, <span class="string">"V"</span> : <span class="number">32833800</span>, <span class="string">"A"</span> : <span class="number">103.13</span> }</div><div class="line">{ <span class="string">"_id"</span> : ObjectId(<span class="string">"54d65597daf0910dfa816996"</span>), <span class="string">"S"</span> : <span class="string">"QQQ"</span>, <span class="string">"D"</span> : ISODate(<span class="string">"2015-02-05T00:00:00Z"</span>), <span class="string">"O"</span> : <span class="number">103.13</span>, <span class="string">"H"</span> : <span class="number">103.83</span>, <span class="string">"L"</span> : <span class="number">102.87</span>, <span class="string">"C"</span> : <span class="number">103.76</span>, <span class="string">"V"</span> : <span class="number">23605500</span>, <span class="string">"A"</span> : <span class="number">103.76</span> }</div><div class="line">{ <span class="string">"_id"</span> : ObjectId(<span class="string">"54d65597daf0910dfa816997"</span>), <span class="string">"S"</span> : <span class="string">"QQQ"</span>, <span class="string">"D"</span> : ISODate(<span class="string">"2015-02-04T00:00:00Z"</span>), <span class="string">"O"</span> : <span class="number">102.54</span>, <span class="string">"H"</span> : <span class="number">103.55</span>, <span class="string">"L"</span> : <span class="number">102.31</span>, <span class="string">"C"</span> : <span class="number">102.87</span>, <span class="string">"V"</span> : <span class="number">34073200</span>, <span class="string">"A"</span> : <span class="number">102.87</span> }</div><div class="line">{ <span class="string">"_id"</span> : ObjectId(<span class="string">"54d65597daf0910dfa816998"</span>), <span class="string">"S"</span> : <span class="string">"QQQ"</span>, <span class="string">"D"</span> : ISODate(<span class="string">"2015-02-03T00:00:00Z"</span>), <span class="string">"O"</span> : <span class="number">102.33</span>, <span class="string">"H"</span> : <span class="number">103.03</span>, <span class="string">"L"</span> : <span class="number">101.68</span>, <span class="string">"C"</span> : <span class="number">102.96</span>, <span class="string">"V"</span> : <span class="number">30750400</span>, <span class="string">"A"</span> : <span class="number">102.96</span> }</div><div class="line">{ <span class="string">"_id"</span> : ObjectId(<span class="string">"54d65597daf0910dfa816999"</span>), <span class="string">"S"</span> : <span class="string">"QQQ"</span>, <span class="string">"D"</span> : ISODate(<span class="string">"2015-02-02T00:00:00Z"</span>), <span class="string">"O"</span> : <span class="number">101.33</span>, <span class="string">"H"</span> : <span class="number">102.07</span>, <span class="string">"L"</span> : <span class="number">99.75</span>, <span class="string">"C"</span> : <span class="number">101.98</span>, <span class="string">"V"</span> : <span class="number">43624700</span>, <span class="string">"A"</span> : <span class="number">101.98</span> }</div><div class="line">{ <span class="string">"_id"</span> : ObjectId(<span class="string">"54d65597daf0910dfa81699a"</span>), <span class="string">"S"</span> : <span class="string">"QQQ"</span>, <span class="string">"D"</span> : ISODate(<span class="string">"2015-01-30T00:00:00Z"</span>), <span class="string">"O"</span> : <span class="number">101.8</span>, <span class="string">"H"</span> : <span class="number">102.58</span>, <span class="string">"L"</span> : <span class="number">100.96</span>, <span class="string">"C"</span> : <span class="number">101.1</span>, <span class="string">"V"</span> : <span class="number">42927600</span>, <span class="string">"A"</span> : <span class="number">101.1</span> }</div><div class="line">{ <span class="string">"_id"</span> : ObjectId(<span class="string">"54d65597daf0910dfa81699b"</span>), <span class="string">"S"</span> : <span class="string">"QQQ"</span>, <span class="string">"D"</span> : ISODate(<span class="string">"2015-01-29T00:00:00Z"</span>), <span class="string">"O"</span> : <span class="number">100.83</span>, <span class="string">"H"</span> : <span class="number">102.08</span>, <span class="string">"L"</span> : <span class="number">99.96</span>, <span class="string">"C"</span> : <span class="number">101.89</span>, <span class="string">"V"</span> : <span class="number">46539700</span>, <span class="string">"A"</span> : <span class="number">101.89</span> }</div><div class="line">{ <span class="string">"_id"</span> : ObjectId(<span class="string">"54d65597daf0910dfa81699c"</span>), <span class="string">"S"</span> : <span class="string">"QQQ"</span>, <span class="string">"D"</span> : ISODate(<span class="string">"2015-01-28T00:00:00Z"</span>), <span class="string">"O"</span> : <span class="number">103.09</span>, <span class="string">"H"</span> : <span class="number">103.18</span>, <span class="string">"L"</span> : <span class="number">100.9</span>, <span class="string">"C"</span> : <span class="number">100.92</span>, <span class="string">"V"</span> : <span class="number">43591700</span>, <span class="string">"A"</span> : <span class="number">100.92</span> }</div><div class="line"><span class="comment">/* ... */</span></div></pre></td></tr></table></figure>
+
+<h2 id="The_solution:">The solution:</h2>
+<figure class="highlight js"><figcaption><span>mongo data grouping script</span><a href="/downloads/code/mongodb_aggregation.js">download</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line">db.ohlc.aggregate({</div><div class="line">        $match: {</div><div class="line">            S: <span class="string">'QQQ'</span></div><div class="line">        }</div><div class="line">    }, {</div><div class="line">        $project: {</div><div class="line">            D: <span class="string">'$D'</span>, O: <span class="string">'$O'</span>, H: <span class="string">'$H'</span>, L: <span class="string">'$H'</span>, C: <span class="string">'$C'</span>, V: <span class="string">'$V'</span>, A: <span class="string">'$A'</span>,</div><div class="line">            weeknbr: {</div><div class="line">                $divide: [{</div><div class="line">                        $subtract: [</div><div class="line">                            <span class="string">'$D'</span>,</div><div class="line">                            <span class="keyword">new</span> ISODate(<span class="string">'1970-01-04'</span>)</div><div class="line">                        ]</div><div class="line">                    },</div><div class="line">                    <span class="number">86400</span> * <span class="number">7000</span></div><div class="line">                ]</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }, {</div><div class="line">        $project: {</div><div class="line">            D: <span class="string">'$D'</span>, O: <span class="string">'$O'</span>, H: <span class="string">'$H'</span>, L: <span class="string">'$H'</span>, C: <span class="string">'$C'</span>, V: <span class="string">'$V'</span>, A: <span class="string">'$A'</span>,</div><div class="line">            rnd_weeknbr: {</div><div class="line">                $subtract: [</div><div class="line">                    <span class="string">'$weeknbr'</span>, {</div><div class="line">                        $mod: [</div><div class="line">                            <span class="string">'$weeknbr'</span>,</div><div class="line">                            <span class="number">1</span></div><div class="line">                        ]</div><div class="line">                    }</div><div class="line">                ]</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }, {</div><div class="line">        $project: {</div><div class="line">            D: <span class="string">'$D'</span>, O: <span class="string">'$O'</span>, H: <span class="string">'$H'</span>, L: <span class="string">'$H'</span>, C: <span class="string">'$C'</span>, V: <span class="string">'$V'</span>, A: <span class="string">'$A'</span>,</div><div class="line">            grp_weeknbr: {</div><div class="line">                $subtract: [</div><div class="line">                    <span class="string">'$rnd_weeknbr'</span>, {</div><div class="line">                        $mod: [</div><div class="line">                            <span class="string">'$rnd_weeknbr'</span>,</div><div class="line">                            <span class="number">4</span></div><div class="line">                        ]</div><div class="line">                    }</div><div class="line">                ]</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }, {</div><div class="line">        $sort: {</div><div class="line">            D: <span class="number">1</span></div><div class="line">        }</div><div class="line">    },</div><div class="line"></div><div class="line">    {</div><div class="line">        $group: {</div><div class="line">            _id: {</div><div class="line">                grp_weeknbr: <span class="string">'$grp_weeknbr'</span></div><div class="line">            },</div><div class="line">            D: {</div><div class="line">                $last: <span class="string">'$D'</span></div><div class="line">            },</div><div class="line">            O: {</div><div class="line">                $first: <span class="string">'$O'</span></div><div class="line">            },</div><div class="line">            H: {</div><div class="line">                $max: <span class="string">'$H'</span></div><div class="line">            },</div><div class="line">            L: {</div><div class="line">                $min: <span class="string">'$L'</span></div><div class="line">            },</div><div class="line">            C: {</div><div class="line">                $last: <span class="string">'$C'</span></div><div class="line">            },</div><div class="line">            A: {</div><div class="line">                $last: <span class="string">'$A'</span></div><div class="line">            },</div><div class="line">            V: {</div><div class="line">                $sum: <span class="string">'$V'</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    }, {</div><div class="line">        $sort: {</div><div class="line">            D: <span class="number">1</span></div><div class="line">        }</div><div class="line">    }</div><div class="line">)</div></pre></td></tr></table></figure>
+
+<h2 id="The_explanation:">The explanation:</h2>
+<p>The idea is to </p>
+<ol>
+<li>group weekly data first (line #13-16), if the original problem is to do N==1 data grouping, the aggregation pipeline can stop in this step</li>
+<li>get the number of weeks (floating point) since 1970-01-01 (all OHLC data in the db are later then that date), line #21-31</li>
+<li>get the rounded number of weeks for step 2, line #37-45</li>
+<li>group by 4 weeks’ OHLC, line #51-59, substitute 4 with the actual unit to suit your need</li>
+<li>sort by _id, which consists of the stock symbol and the calculated grouping number grp_weeknbr</li>
+</ol>
+<p>Step 1 is essential since we need to make sure the agrregated data lands on the last trading date of the week.</p>
+<h2 id="Result:">Result:</h2>
+<figure class="highlight js"><figcaption><span>data grouping result</span><a href="/downloads/code/mongodb_aggregation_result.js">download</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 0 */</span></div><div class="line">{</div><div class="line">    <span class="string">"result"</span> : [ </div><div class="line">        {</div><div class="line">            <span class="string">"_id"</span> : {</div><div class="line">                <span class="string">"grp_weeknbr"</span> : <span class="number">1520</span></div><div class="line">            },</div><div class="line">            <span class="string">"D"</span> : ISODate(<span class="string">"1999-03-19T00:00:00.000Z"</span>),</div><div class="line">            <span class="string">"O"</span> : <span class="number">102.25</span>,</div><div class="line">            <span class="string">"H"</span> : <span class="number">106.5</span>,</div><div class="line">            <span class="string">"L"</span> : <span class="number">102.31</span>,</div><div class="line">            <span class="string">"C"</span> : <span class="number">102.44</span>,</div><div class="line">            <span class="string">"A"</span> : <span class="number">46.98</span>,</div><div class="line">            <span class="string">"V"</span> : <span class="number">50912800</span></div><div class="line">        }, </div><div class="line">        {</div><div class="line">            <span class="string">"_id"</span> : {</div><div class="line">                <span class="string">"grp_weeknbr"</span> : <span class="number">1524</span></div><div class="line">            },</div><div class="line">            <span class="string">"D"</span> : ISODate(<span class="string">"1999-04-16T00:00:00.000Z"</span>),</div><div class="line">            <span class="string">"O"</span> : <span class="number">102.88</span>,</div><div class="line">            <span class="string">"H"</span> : <span class="number">112.5</span>,</div><div class="line">            <span class="string">"L"</span> : <span class="number">101</span>,</div><div class="line">            <span class="string">"C"</span> : <span class="number">103.94</span>,</div><div class="line">            <span class="string">"A"</span> : <span class="number">47.67</span>,</div><div class="line">            <span class="string">"V"</span> : <span class="number">182968000</span></div><div class="line">        }, </div><div class="line">		<span class="comment">/* ... */</span></div><div class="line">        {</div><div class="line">            <span class="string">"_id"</span> : {</div><div class="line">                <span class="string">"grp_weeknbr"</span> : <span class="number">2344</span></div><div class="line">            },</div><div class="line">            <span class="string">"D"</span> : ISODate(<span class="string">"2015-01-02T00:00:00.000Z"</span>),</div><div class="line">            <span class="string">"O"</span> : <span class="number">105.11</span>,</div><div class="line">            <span class="string">"H"</span> : <span class="number">105.57</span>,</div><div class="line">            <span class="string">"L"</span> : <span class="number">102.09</span>,</div><div class="line">            <span class="string">"C"</span> : <span class="number">102.94</span>,</div><div class="line">            <span class="string">"A"</span> : <span class="number">102.94</span>,</div><div class="line">            <span class="string">"V"</span> : <span class="number">695244900</span></div><div class="line">        }, </div><div class="line">        {</div><div class="line">            <span class="string">"_id"</span> : {</div><div class="line">                <span class="string">"grp_weeknbr"</span> : <span class="number">2348</span></div><div class="line">            },</div><div class="line">            <span class="string">"D"</span> : ISODate(<span class="string">"2015-01-30T00:00:00.000Z"</span>),</div><div class="line">            <span class="string">"O"</span> : <span class="number">102.5</span>,</div><div class="line">            <span class="string">"H"</span> : <span class="number">104.58</span>,</div><div class="line">            <span class="string">"L"</span> : <span class="number">100.95</span>,</div><div class="line">            <span class="string">"C"</span> : <span class="number">101.1</span>,</div><div class="line">            <span class="string">"A"</span> : <span class="number">101.1</span>,</div><div class="line">            <span class="string">"V"</span> : <span class="number">794977000</span></div><div class="line">        }, </div><div class="line">        {</div><div class="line">            <span class="string">"_id"</span> : {</div><div class="line">                <span class="string">"grp_weeknbr"</span> : <span class="number">2352</span></div><div class="line">            },</div><div class="line">            <span class="string">"D"</span> : ISODate(<span class="string">"2015-02-06T00:00:00.000Z"</span>),</div><div class="line">            <span class="string">"O"</span> : <span class="number">101.33</span>,</div><div class="line">            <span class="string">"H"</span> : <span class="number">104.17</span>,</div><div class="line">            <span class="string">"L"</span> : <span class="number">102.07</span>,</div><div class="line">            <span class="string">"C"</span> : <span class="number">103.13</span>,</div><div class="line">            <span class="string">"A"</span> : <span class="number">103.13</span>,</div><div class="line">            <span class="string">"V"</span> : <span class="number">164887600</span></div><div class="line">        }</div><div class="line">    ],</div><div class="line">    <span class="string">"ok"</span> : <span class="number">1</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://midnightcodr.github.io/2015/02/07/OHLC-data-grouping-with-mongodb/" data-id="2rtbib80jpm8573z" class="article-share-link">Share</a>
+      
+        <a href="http://midnightcodr.github.io/2015/02/07/OHLC-data-grouping-with-mongodb/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/" class="article-date">
@@ -115,7 +174,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://midnightcodr.github.io/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/" data-id="jfxeniyaaece88sp" class="article-share-link">Share</a>
+      <a data-url="http://midnightcodr.github.io/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/" data-id="6qa9fnsknpzew1b1" class="article-share-link">Share</a>
       
         <a href="http://midnightcodr.github.io/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -180,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://midnightcodr.github.io/2014/11/02/Tips-to-make-the-life-of-coding-a-whole-lot-easier/" data-id="yxzmwbetyo0tbfy5" class="article-share-link">Share</a>
+      <a data-url="http://midnightcodr.github.io/2014/11/02/Tips-to-make-the-life-of-coding-a-whole-lot-easier/" data-id="71qvuh9pgnit9wmh" class="article-share-link">Share</a>
       
         <a href="http://midnightcodr.github.io/2014/11/02/Tips-to-make-the-life-of-coding-a-whole-lot-easier/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -237,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://midnightcodr.github.io/2014/03/23/i-just-built-my-first-standing-desk/" data-id="ahyjvm451l930mjs" class="article-share-link">Share</a>
+      <a data-url="http://midnightcodr.github.io/2014/03/23/i-just-built-my-first-standing-desk/" data-id="60himoimybm442ji" class="article-share-link">Share</a>
       
         <a href="http://midnightcodr.github.io/2014/03/23/i-just-built-my-first-standing-desk/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -314,7 +373,7 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://midnightcodr.github.io/2014/01/11/install-gitlab-6-dot-4-on-raspberry-pi/" data-id="lmujx0pnjzlubvwf" class="article-share-link">Share</a>
+      <a data-url="http://midnightcodr.github.io/2014/01/11/install-gitlab-6-dot-4-on-raspberry-pi/" data-id="1gaxa9feeo2tv2om" class="article-share-link">Share</a>
       
         <a href="http://midnightcodr.github.io/2014/01/11/install-gitlab-6-dot-4-on-raspberry-pi/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -385,7 +444,7 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://midnightcodr.github.io/2013/11/09/a-few-zsh-tricks/" data-id="5bbg0wrt5pvfg6i6" class="article-share-link">Share</a>
+      <a data-url="http://midnightcodr.github.io/2013/11/09/a-few-zsh-tricks/" data-id="2df8j35yjv683fdc" class="article-share-link">Share</a>
       
         <a href="http://midnightcodr.github.io/2013/11/09/a-few-zsh-tricks/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -429,7 +488,7 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://midnightcodr.github.io/2013/07/20/use-and-and-in-to-simplify-codes/" data-id="o9vsi49u5a7uj8d7" class="article-share-link">Share</a>
+      <a data-url="http://midnightcodr.github.io/2013/07/20/use-and-and-in-to-simplify-codes/" data-id="zrxvffx49jltlhto" class="article-share-link">Share</a>
       
         <a href="http://midnightcodr.github.io/2013/07/20/use-and-and-in-to-simplify-codes/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -481,7 +540,7 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://midnightcodr.github.io/2013/06/15/javascript-injection-attack-what-is-it-and-how-to-prevent/" data-id="3m19laqwci3zcs7y" class="article-share-link">Share</a>
+      <a data-url="http://midnightcodr.github.io/2013/06/15/javascript-injection-attack-what-is-it-and-how-to-prevent/" data-id="3n63z2yrryvyup38" class="article-share-link">Share</a>
       
         <a href="http://midnightcodr.github.io/2013/06/15/javascript-injection-attack-what-is-it-and-how-to-prevent/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -562,7 +621,7 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://midnightcodr.github.io/2013/05/09/nagios-audio-alert-with-mac-os-x/" data-id="2kfybobtg1684811" class="article-share-link">Share</a>
+      <a data-url="http://midnightcodr.github.io/2013/05/09/nagios-audio-alert-with-mac-os-x/" data-id="7c9samhedmru4pbr" class="article-share-link">Share</a>
       
         <a href="http://midnightcodr.github.io/2013/05/09/nagios-audio-alert-with-mac-os-x/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -620,76 +679,9 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://midnightcodr.github.io/2013/04/08/ga-z68x-ud3h-b3-f12-mountain-lion-10-dot-8-3-installation-notes/" data-id="lbbtfprmtgv48lu1" class="article-share-link">Share</a>
+      <a data-url="http://midnightcodr.github.io/2013/04/08/ga-z68x-ud3h-b3-f12-mountain-lion-10-dot-8-3-installation-notes/" data-id="x0gonqvrseqvwgxg" class="article-share-link">Share</a>
       
         <a href="http://midnightcodr.github.io/2013/04/08/ga-z68x-ud3h-b3-f12-mountain-lion-10-dot-8-3-installation-notes/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/01/26/cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature/" class="article-date">
-  <time datetime="2013-01-26T05:00:00.000Z" itemprop="datePublished">Jan 26 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/fun/">fun</a>►<a class="article-category-link" href="/categories/fun/health/">health</a>►<a class="article-category-link" href="/categories/fun/health/programming/">programming</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/01/26/cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature/">Cool Audio Reminder Script With MAC OS X&#39;s Text-to-speech Feature</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Why">Why</h2>
-<p>We know that <a href="http://abcnews.go.com/WN/sitting-long-work-pose-health-danger/story?id=11926874" target="_blank" rel="external">sitting for too long is harmful for our health</a>. My solution to this problem is to set up a friendly reminder using Mac OS X’s speech to text feature, and a bit of programming. So here we go:</p>
-<h2 id="Steps">Steps</h2>
-<p>1). Create a reminder file under your home directory, for example,</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi ~/<span class="keyword">break</span>_reminder</div></pre></td></tr></table></figure>
-
-
-<figure class="highlight"><figcaption><span>content of ~/break_reminder</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Stand up <span class="keyword">and</span> walk around Your_Name.</div><div class="line">Don<span class="comment">'t be lazy Your_Name, I know you can do it.</span></div><div class="line">Stand up now, Your_Name, <span class="keyword">and</span> <span class="keyword">do</span> some exercises.</div><div class="line">Sitting <span class="keyword">for</span> too <span class="built_in">long</span> <span class="keyword">is</span> <span class="keyword">not</span> healthy <span class="keyword">for</span> you Your_Name.</div><div class="line"><span class="keyword">Take</span> a walk, <span class="keyword">get</span> some water Your_Name.</div><div class="line">You need a <span class="built_in">short</span> break Your_Name.</div><div class="line">Don<span class="comment">'t stick your butt to the chair for too long Your_Name.</span></div></pre></td></tr></table></figure>
-
-<p>Obviously change Your_Name to something that you want the voice to call you. This is one that I created, feel free to change the content.</p>
-<p>2). Create the reminder shell script</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">vi</span> ~/reminder.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
-
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="shebang">#!/usr/bin/env bash</span></div><div class="line">(( total_lines = $(wc <span class="operator">-l</span> &lt; ~/<span class="keyword">break</span>_reminder) )) &amp;&amp; (( line = <span class="variable">$RANDOM</span> % <span class="variable">$total_lines</span> + <span class="number">1</span> )) &amp;&amp; sed -n <span class="variable">${line}</span>p ~/<span class="keyword">break</span>_reminder|say</div></pre></td></tr></table></figure><br>3). Run some dry tests by running</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash ~/reminder.sh</div></pre></td></tr></table></figure><br>4). Add the reminder to crontab</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">crontab <span class="operator">-e</span></div></pre></td></tr></table></figure><br>insert the following line:</p>
-<p>0 9-16 <em> </em> 1-5 bash ~/reminder.sh</p>
-<p>This will run the reminder script from 9am to 4pm hourly on the clock Monday through Friday. If you are new to crontab, refer to <a href="http://en.wikipedia.org/wiki/Cron" target="_blank" rel="external">http://en.wikipedia.org/wiki/Cron</a> for more details.</p>
-<h2 id="Notes">Notes</h2>
-<ol>
-<li>I tried putting the meat inside ~/reminder.sh directly into crontab, didn’t work, that’s why this extra script is needed.</li>
-<li>Feel free to change the env from bash to zsh in ~/reminder.sh, I have tested it to work with both bash and zsh.</li>
-<li>Personally I prefer Serena’s voice, you need to download it via these steps: Search for “Dictation &amp; Speech” in the spotlight -&gt; Tick “Text to Speech” -&gt; Tick “Customize”, then “Serena” from System Voice dropdown, you will be prompted to download the voice file if it has not been downloaded before.</li>
-<li>The reminder (break_reminder) and script (reminder.sh) can be found in my github repository: <a href="https://github.com/midnightcodr/break_reminder" target="_blank" rel="external">https://github.com/midnightcodr/break_reminder</a>.</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://midnightcodr.github.io/2013/01/26/cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature/" data-id="hn4idmwznvensqv5" class="article-share-link">Share</a>
-      
-        <a href="http://midnightcodr.github.io/2013/01/26/cool-audio-reminder-script-with-mac-os-xs-text-to-speech-feature/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -739,7 +731,7 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -749,6 +741,10 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/02/07/OHLC-data-grouping-with-mongodb/">OHLC data grouping with mongodb</a>
+          </li>
         
           <li>
             <a href="/2014/11/22/How-to-convert-20-million-datetime-strings-to-ISODate-in-less-than-30-minutes/">How to convert 20 million datetime strings to ISODate in less than 30 minutes</a>
@@ -766,10 +762,6 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
             <a href="/2014/01/11/install-gitlab-6-dot-4-on-raspberry-pi/">Install Gitlab(6.4) on Raspberry PI</a>
           </li>
         
-          <li>
-            <a href="/2013/11/09/a-few-zsh-tricks/">A few zsh tricks</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -782,7 +774,7 @@ sudo -u git -H editor <span class="type">Gemfile</span>.lock    <span class="com
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2014 Rico Chen<br>
+      &copy; 2015 Rico Chen<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
